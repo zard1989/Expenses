@@ -1,0 +1,31 @@
+Expenses
+
+Expenses is a simple expense management program written in Perl. It has a command-line user interface. You can easily log your expenses, make budgets and simply analyze them through commands that are easy to memorize.
+
+To create a new expense, just type:
+
+    new
+
+Then there are few questions following.
+
+Each expense has four columns. They are date, category, description and amount. You can then query some expenses by these columns.
+
+To find out some expenses with conditions, here are some examples for you:
+
+    1. show date 2009.9.3 #Show all the expenses in 2009.9.3
+    2. show date 2009.9 #Show all the expenses in September, 2009
+    3. show date 2009.9 category 飲料 #Show all the beverage in September, 2009
+    4. show >= 1000 # Show all the expenses which amount are higher than 100 dollars
+
+The "daily" command shows the daily expenses. It shows today's expenses, but you can give it a date.
+
+You can type "help" or "help command" whenever you need some help.
+
+INSTALLATION
+
+This tiny program requires some CPAN modules listing below:
+
+1. Moose
+2. Term::ANSIColor
+
+After installing them, you can simply execute expenses.pl to run this program.

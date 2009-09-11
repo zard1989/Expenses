@@ -28,10 +28,6 @@ has 'to' => (
 sub BUILD {
     my ($self) = @_;
 
-    if (! -f $self->filename) {
-        return;
-    }
-
     open BUDGET, $self->filename;
 
     chomp(my $budget = <BUDGET>);
