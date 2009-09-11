@@ -15,9 +15,13 @@ has 'expense_items' => (
 
 sub BUILD {
     my ($self) = @_;
+    $self->expense_items([]);
+
+#    if (not -f $self->filename) {
+#        return;
+#    }
     open EXPENSEBOOK, $self->filename;
     binmode EXPENSEBOOK, ":utf8";
-    $self->expense_items([]);
     while (<EXPENSEBOOK>) {
         chomp;
         push @{ $self->expense_items }, parse_line($_);

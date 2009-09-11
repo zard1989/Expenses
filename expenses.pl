@@ -16,6 +16,10 @@ use utf8;
 binmode STDOUT, ':utf8';
 binmode STDIN,  ':utf8';
 
+if (not -f "$ENV{HOME}/.expenses") {
+    first_time();
+}
+
 my %conf = read_conf("$ENV{HOME}/.expenses");
 
 my $expenses = Expense::Book->new(filename => $conf{expense_file});
@@ -123,6 +127,21 @@ sub prompt {
     return 1;
 }
 
+sub first_time {
+    print "Please enter your expense file [~/expenses.txt]:";
+    chomp(my $expense_file = <>);
+    $expense_file ||= "$ENV{HOME}/expenses.txt";
+
+    print "Please enter your budget file [~/budget.txt]:";
+    chomp(my $budget_file = <>);
+    $budget_file ||= "$ENV{HOME}/budget.txt";
+
+    open my $conf_file, ">$ENV{HOME}/.expenses";
+    say $conf_file "expense_file = $expense_file";
+    say $conf_file "budget_file  = $budget_file";
+    close $conf_file;
+}
+
 sub print_welcome {
     my $title = "St. Kevin's Expense Book, 2009";
     my $notes = "    (utf8) started on 2009.4.2";
@@ -134,8 +153,6 @@ sub print_welcome {
     command_daily();
 
     print "\n";
-
-    command_budget();
 
     print color 'reset';
 }
