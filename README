@@ -23,6 +23,8 @@ You can type "help" or "help command" whenever you need some help.
 
 INSTALLATION
 
+You will need a Perl distribution, version 5.10 or higher to run this tiny program.
+
 This tiny program requires some CPAN modules listing below:
 
 1. Moose
